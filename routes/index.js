@@ -23,18 +23,22 @@ router.post('/login', function (req, res, next) {
         Username: data.username
     }).select('Password')
         .then(function (Password) {
-            switch (Password) {
-                case undefined:
-                    data.message = "Password or Username is wrong";
-                    index.renderHomeWithUserNameFilledIn(data,res);
-                    break;
-                case Password[0].Password === data.password:
+            if (Password[0] === undefined){
+                index.renderHomeWithUserNameFilledIn({
+                    username: data.username,
+                    messageForLogin: "Password or Username is wrong",
+                    register: undefined
+                },res);
+            } else {
+                if (Password[0].Password === data.password){
                     index.login(data,res);
-                    break;
-                default:
-                    data.message = "Password or Username is wrong";
-                    index.renderHomeWithUserNameFilledIn(data,res);
-                    break;
+                } else {
+                    index.renderHomeWithUserNameFilledIn({
+                        username: data.username,
+                        messageForLogin: "Password or Username is wrong",
+                        register: undefined
+                    },res);
+                }
             }
         })
 });
