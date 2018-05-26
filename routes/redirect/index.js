@@ -4,8 +4,18 @@
 
 module.exports = (function () {
 
-    let login = function (data, res) {
-        res.render('home', {title: data.username})
+    let normalIndex = function (res) {
+        res.render('index', {
+            user: {
+                username: null,
+                password: null
+            },
+            error: {
+                message: null,
+                messageForLogin: null,
+                register: false
+            }
+        });
     };
 
     let renderHomeWithUserNameFilledIn = function (data, res) {
@@ -16,20 +26,8 @@ module.exports = (function () {
             },
             error: {
                 message: null,
+                messageForLogin: null,
                 register: false
-            }
-        })
-    };
-
-    let renderRegisterWithRenderHome = function (data, res) {
-        res.render('index', {
-            user: {
-                username: data.username,
-                password: null
-            },
-            error: {
-                message: data.message,
-                register: data.register != undefined
             }
         })
     };
@@ -42,22 +40,30 @@ module.exports = (function () {
             },
             error: {
                 message: null,
+                messageForLogin: null,
                 register: false
             }
         })
     };
 
-    let normalIndex = function (res) {
+    let renderRegisterWithRenderHome = function (data, res) {
+        console.log('hay');
+        console.log(data);
         res.render('index', {
             user: {
-                username: null,
+                username: data.username,
                 password: null
             },
             error: {
-                message: null,
-                register: false
+                message: data.message,
+                messageForLogin: data.messageForLogin,
+                register: data.register != undefined
             }
-        });
+        })
+    };
+
+    let login = function (data, res) {
+        res.render('home', {title: data.username})
     };
 
 
