@@ -68,6 +68,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                    <% if (error.messageForLogin != null) { %>
+                                    <h3 style="color: red"><%= error.messageForLogin %></h3>
+                                    <% } %>
                             </form>
                             <% if (error.register === true) { %>
                                 <form id="register-form" action="/register" method="post" role="form" style="display: block;">
