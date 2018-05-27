@@ -7,3 +7,5 @@
 node_modules/
 
 public/libraries/
+failed-login-attempts.txt
+failed-login-attempts.txt___jb_old___
