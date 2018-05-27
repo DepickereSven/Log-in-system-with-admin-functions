@@ -2,12 +2,12 @@
  * Created by svend on 27/05/2018.
  */
 
-const fileRead = require('../fileread');
+const fileRead = require('../fileRead');
 
 module.exports = (function () {
 
     let toSomeResources = function (res, data) {
-        fileRead.saveTofile({
+        fileRead.saveToFile({
             username: data.username ? data.username : "not logged in user ",
             message: data.message
         });
