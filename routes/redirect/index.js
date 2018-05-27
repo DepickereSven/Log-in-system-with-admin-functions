@@ -81,7 +81,9 @@ module.exports = (function () {
     };
 
     let login = function (data, res) {
-        res.render('home', {title: data.username})
+        res.render('home', {
+            username: data.username
+        })
     };
 
 
