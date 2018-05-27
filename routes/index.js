@@ -3,7 +3,8 @@ const router = express.Router();
 const knex = require('knex')(require('../Sql-data/sql-connection'));
 
 const index = require('./redirect/index');
-
+const error = require('./redirect/error');
+const user = require('./redirect/user');
 
 let insertValues = function (data, res) {
     knex('logindetails')
@@ -17,7 +18,7 @@ router.get('/', function (req, res, next) {
     index.normalIndex(res);
 });
 
-router.post('/login', function (req, res, next) {
+router.post('/user/login', function (req, res, next) {
     let data = req.body;
     knex('logindetails').where({
         Username: data.username
@@ -26,18 +27,20 @@ router.post('/login', function (req, res, next) {
             if (Password[0] === undefined) {
                 index.renderLoginWithErrors({
                     username: data.username,
-                    messageForLogin: "Password or Username is wrong"
+                    messageForLogin: "Password or Username is wrong",
+                    flag: "user don't exist"
                 }, res);
             } else {
                 if (Password[0].Password === data.password) {
+                    req.session.authenticated = true;
+                    req.session.user = data.username;
                     index.login(data, res);
                 } else {
                     index.renderLoginWithErrors({
                         username: data.username,
-                        messageForLogin: "Password or Username is wrong"
+                        messageForLogin: "Password or Username is wrong",
+                        flag: "password isn't correct"
                     }, res);
-
-
                 }
             }
         })
@@ -67,6 +70,27 @@ router.post('/register', function (req, res, next) {
             register: true,
             username: data.username
         }, res)
+    }
+});
+
+
+router.get('/user/:username/someResource', function(req, res, next){
+    if (req.session.authenticated){
+
+    } else {
+        index.normalIndex(res);
+    }
+});
+
+router.get('/user/admin/log', function (req, res, next) {
+    if (req.session.authenticated && req.session.user === 'admin'){
+        user.renderAdmin(res);
+    } else {
+        error.toSomeResources(res, {
+            message: "You don't have the privilege to access these resources.",
+            username: req.session.user,
+            status: 403
+        })
     }
 });
 
