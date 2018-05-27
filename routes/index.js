@@ -5,6 +5,7 @@ const knex = require('knex')(require('../Sql-data/sql-connection'));
 const index = require('./redirect/index');
 const error = require('./redirect/error');
 const user = require('./redirect/user');
+const userList = require('./userList');
 
 let insertValues = function (data, res) {
     knex('logindetails')
@@ -12,6 +13,20 @@ let insertValues = function (data, res) {
         .then(
             index.fillInLoginDetails(data, res)
         );
+};
+
+let registerAnUser = function (data,req,res) {
+    if (userList.addUser(data.username)){
+        req.session.authenticated = true;
+        req.session.user = data.username;
+        index.login(data, res);
+    } else {
+        index.renderLoginWithErrors({
+            username: data.username,
+            messageForLogin: "Error, try again later",
+            flag: "try to login again while already being logged in"
+        }, res);
+    }
 };
 
 router.get('/', function (req, res, next) {
@@ -32,9 +47,7 @@ router.post('/user/login', function (req, res, next) {
                 }, res);
             } else {
                 if (Password[0].Password === data.password) {
-                    req.session.authenticated = true;
-                    req.session.user = data.username;
-                    index.login(data, res);
+                    registerAnUser(data,req,res);
                 } else {
                     index.renderLoginWithErrors({
                         username: data.username,
@@ -74,6 +87,7 @@ router.post('/register', function (req, res, next) {
 });
 
 router.get('/user/:username/logout', function (req, res, next) {
+    userList.removeUser(req.session.username);
     req.session.authenticated = false;
     index.normalIndex(res);
 });
@@ -109,6 +123,14 @@ router.get('/user/:username/Generic', function (req, res, next) {
 router.get('/user/:username/Elements', function (req, res, next) {
     if (req.session.authenticated){
         user.renderToElementsPage(res, req.session.user)
+    } else {
+        index.normalIndex(res);
+    }
+});
+
+router.get('/user/:username/all', function (req, res, next) {
+    if (req.session.authenticated){
+        user.renderToAllPage(res, req.session.user)
     } else {
         index.normalIndex(res);
     }
