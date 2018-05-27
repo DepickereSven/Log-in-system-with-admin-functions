@@ -36,3 +36,6 @@ Om te generen zie file: [Table_LoginDetails.sql](Table_LoginDetails.sql)
   * Je moet wel in gelogd zijn als admin => 
     * Username: admin
     * Paswword: admin
+![Admin Page](https://i.imgur.com/4gvVlcf.png)
+
+
