@@ -2,6 +2,8 @@
  * Created by svend on 26/05/2018.
  */
 
+const fileRead = require('../fileread');
+
 module.exports = (function () {
 
     let normalIndex = function (res) {
@@ -61,6 +63,10 @@ module.exports = (function () {
     };
 
     let renderLoginWithErrors = function (data, res) {
+        fileRead.saveTofile({
+            username: data.username,
+            message: data.flag
+        });
         res.render('index', {
             user: {
                 username: data.username,
