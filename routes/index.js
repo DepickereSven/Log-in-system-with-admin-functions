@@ -73,20 +73,16 @@ router.post('/register', function (req, res, next) {
     }
 });
 
-
-router.get('/user/:username/someResource', function(req, res, next){
-    if (req.session.authenticated){
-
-    } else {
-        index.normalIndex(res);
-    }
+router.get('/user/:username/logout', function (req, res, next) {
+    req.session.authenticated = false;
+    index.normalIndex(res);
 });
 
 router.get('/user/admin/log', function (req, res, next) {
     if (req.session.authenticated && req.session.user === 'admin'){
-        user.renderAdmin(res);
+        user.renderAdmin(res, req.session.user);
     } else {
-        error.toSomeResources(res, {
+        error.toErrorPage(res, {
             message: "You don't have the privilege to access these resources.",
             username: req.session.user,
             status: 403
@@ -94,5 +90,28 @@ router.get('/user/admin/log', function (req, res, next) {
     }
 });
 
+router.get('/user/:username/someResource', function(req, res, next){
+    if (req.session.authenticated){
+        user.renderToLandingPage(res, req.session.user)
+    } else {
+        index.normalIndex(res);
+    }
+});
+
+router.get('/user/:username/Generic', function (req, res, next) {
+    if (req.session.authenticated){
+        user.renderToGenericPage(res, req.session.user)
+    } else {
+        index.normalIndex(res);
+    }
+});
+
+router.get('/user/:username/Elements', function (req, res, next) {
+    if (req.session.authenticated){
+        user.renderToElementsPage(res, req.session.user)
+    } else {
+        index.normalIndex(res);
+    }
+});
 
 module.exports = router;
