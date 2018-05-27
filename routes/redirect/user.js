@@ -6,38 +6,42 @@ const fileRead = require('../fileRead');
 
 module.exports = (function () {
 
-    let toSomeResources = function (res) {
-        res.render('user', {
-            user: {
-                username: null,
-                password: null
-            },
-            error: {
-                message: null,
-                messageForLogin: null,
-                register: false
-            }
-        });
+    let renderAdmin = function (res, otherData) {
+        fileRead.doFileReading()
+            .then(function (data) {
+                    res.render('adminpage', {
+                        data: {
+                            message: data.split(new RegExp(['\n', '\t'].join('|'), 'g'))
+                        },
+                        username: otherData
+                    })
+                }
+            )
     };
 
+    let renderToLandingPage = function (res, data) {
+        res.render('home', {
+            username: data
+        })
+    };
 
-    let renderAdmin = function (res) {
-         fileRead.doFileReading()
-            .then(function (data) {
-                console.log(data.split(new RegExp(['\n', '\t'].join('|'), 'g')));
-                console.log();
-                res.render('adminpage', {
-                    data: {
-                        message: data.split(new RegExp(['\n', '\t'].join('|'), 'g'))
-                    }
-                })
-            }
-        )
+    let renderToGenericPage = function (res, data) {
+        res.render('generic', {
+            username: data
+        })
+    };
+
+    let renderToElementsPage = function (res, data) {
+        res.render('elements', {
+            username: data
+        })
     };
 
     return {
-        toSomeResources: toSomeResources,
-        renderAdmin: renderAdmin
+        renderAdmin: renderAdmin,
+        renderToLandingPage: renderToLandingPage,
+        renderToGenericPage: renderToGenericPage,
+        renderToElementsPage: renderToElementsPage
     }
 
 })();
