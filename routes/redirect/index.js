@@ -47,8 +47,6 @@ module.exports = (function () {
     };
 
     let renderRegisterWithRenderHome = function (data, res) {
-        console.log('hay');
-        console.log(data);
         res.render('index', {
             user: {
                 username: data.username,
@@ -56,8 +54,22 @@ module.exports = (function () {
             },
             error: {
                 message: data.message,
+                messageForLogin: null,
+                register: data.register
+            }
+        })
+    };
+
+    let renderLoginWithErrors = function (data, res) {
+        res.render('index', {
+            user: {
+                username: data.username,
+                password: null
+            },
+            error: {
+                message: null,
                 messageForLogin: data.messageForLogin,
-                register: data.register != undefined
+                register: false
             }
         })
     };
@@ -72,7 +84,8 @@ module.exports = (function () {
         renderHomeWithUserNameFilledIn: renderHomeWithUserNameFilledIn,
         renderRegisterWithRenderHome: renderRegisterWithRenderHome,
         fillInLoginDetails: fillInLoginDetails,
-        normalIndex: normalIndex
+        normalIndex: normalIndex,
+        renderLoginWithErrors: renderLoginWithErrors
     }
 
 })();
