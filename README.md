@@ -33,6 +33,6 @@ Om te generen zie file: [Table_LoginDetails.sql](Table_LoginDetails.sql)
   * Indien je hetzelfde emailadress opnieuw probeert zal het de gepaste foutmelding geven.
   
 * Op de webpagina localhost:3000/user/admin/log vind je dat gefaalde inlog pogingen
- * Je moet wel in gelogd zijn als admin => 
-  * Username: admin
-  * Paswword: admin
+  * Je moet wel in gelogd zijn als admin => 
+    * Username: admin
+    * Paswword: admin
