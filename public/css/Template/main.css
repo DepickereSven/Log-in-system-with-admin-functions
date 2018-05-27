@@ -1522,7 +1522,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-checkbox input:checked + label {
-  background: url(../img/elements/primary-check.png) no-repeat center center/cover;
+  background: url(../../img/elements/primary-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1560,7 +1560,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-checkbox input:checked + label {
-  background: url(../img/elements/success-check.png) no-repeat center center/cover;
+  background: url(../../img/elements/success-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1603,7 +1603,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-checkbox input:checked + label {
-  background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
+  background: url(../../img/elements/disabled-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1641,7 +1641,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-radio input:checked + label {
-  background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
+  background: url(../../img/elements/primary-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1679,7 +1679,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-radio input:checked + label {
-  background: url(../img/elements/success-radio.png) no-repeat center center/cover;
+  background: url(../../img/elements/success-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1722,7 +1722,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-radio input:checked + label {
-  background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
+  background: url(../../img/elements/disabled-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1902,7 +1902,7 @@ nav a:hover {
 
 body {
   background-attachment: fixed;
-  background-image: url("../img/body-bg.jpg");
+  background-image: url("../../img/body-bg.jpg");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2283,7 +2283,7 @@ body:after {
   right: 0;
   width: 50%;
   height: 100%;
-  background: url(../img/story-bg.jpg) no-repeat center center/cover;
+  background: url(../../img/story-bg.jpg) no-repeat center center/cover;
   z-index: 1;
 }
 
