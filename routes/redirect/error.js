@@ -6,7 +6,7 @@ const fileRead = require('../fileRead');
 
 module.exports = (function () {
 
-    let toSomeResources = function (res, data) {
+    let toErrorPage = function (res, data) {
         fileRead.saveToFile({
             username: data.username ? data.username : "not logged in user ",
             message: data.message
@@ -21,7 +21,7 @@ module.exports = (function () {
     };
 
     return {
-        toSomeResources: toSomeResources
+        toErrorPage: toErrorPage
     }
 
 })();
