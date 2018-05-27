@@ -3,6 +3,7 @@
  */
 
 const fileRead = require('../fileRead');
+const userList = require('../userList');
 
 module.exports = (function () {
 
@@ -37,11 +38,20 @@ module.exports = (function () {
         })
     };
 
+    let renderToAllPage = function (res, data) {
+        console.log(userList.usernames)
+          res.render('all', {
+              username: data,
+              data: userList.usernames
+          })
+        };
+
     return {
         renderAdmin: renderAdmin,
         renderToLandingPage: renderToLandingPage,
         renderToGenericPage: renderToGenericPage,
-        renderToElementsPage: renderToElementsPage
+        renderToElementsPage: renderToElementsPage,
+        renderToAllPage: renderToAllPage
     }
 
 })();
