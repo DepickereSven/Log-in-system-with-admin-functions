@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <link rel='stylesheet' href='/css/login.css'/>
+    <link rel='stylesheet' href='/libraries/bootstrap/css/bootstrap.css'/>
+</head>
+<body>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>What happend</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.message.forEach(function (el, index) { %>
+        <tr>
+            <th scope="row"><%= index %></th>
+            <% if (index % 2 != 0) {%>
+                <td><%= data.message[index + 1] %></td>
+                <td><%= data.message[index + 2] %></td>
+            <%} else {%>
+                <td><%= data.message[index]  %></td>
+                <td><%= data.message[index + 1] %></td>
+            <%}%>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
+</body>
+<script src="/libraries/jquery/jquery-3.2.0.js"></script>
+<script src="/libraries/bootstrap/js/bootstrap.js"></script>
+</html>
