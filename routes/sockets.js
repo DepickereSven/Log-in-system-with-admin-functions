@@ -17,8 +17,7 @@ const serverSocket = io(server);
 module.exports = (function () {
 
     serverSocket.on("connection", function (socket) {
-        console.log("client connected");
-        serverSocket.emit('welcome', userDataList.userData);
+        serverSocket.emit('remove', userDataList.userData);
 
 
         socket.on("disconnect", () => {
