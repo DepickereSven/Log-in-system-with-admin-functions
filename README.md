@@ -38,4 +38,6 @@ Om te generen zie file: [Table_LoginDetails.sql](Table_LoginDetails.sql)
     * Paswword: admin
 ![Admin Page](https://i.imgur.com/4gvVlcf.png)
 
+* Op de pagina online vind je alle active gebruikers op dit moment. 
+ * Is mogelijk gemaakte met een socketverbinding die op de poort 8080 draait
 
