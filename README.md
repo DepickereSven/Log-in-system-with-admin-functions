@@ -36,8 +36,24 @@ Om te generen zie file: [Table_LoginDetails.sql](Table_LoginDetails.sql)
   * Je moet wel in gelogd zijn als admin => 
     * Username: admin
     * Paswword: admin
-![Admin Page](https://i.imgur.com/4gvVlcf.png)
+    
+![Admin Page](https://i.imgur.com/XnYaNVV.png)
+
 
 * Op de pagina online vind je alle active gebruikers op dit moment. 
- * Is mogelijk gemaakte met een socketverbinding die op de poort 8080 draait
+  * Is mogelijk gemaakte met een socketverbinding die op de poort 8080 draait
+* Alles wat in de opgave staat is geïmplementeerd. 
 
+## Screenshots
+
+### Pagina om in te loggen
+![Pagina om in te loggen](https://i.imgur.com/fCGLUtu.png)
+
+### Landing Page
+![Landing Page](https://i.imgur.com/AGDdIRS.png)
+
+### Kijken wie online is
+![Kijken wie online is](https://i.imgur.com/kMLIX9t.png)
+
+### Admin page om te kijken welke error's er gebeurt zijn
+![Admin page om te kijken welke error's er gebeurt zijn](https://i.imgur.com/XnYaNVV.png)
