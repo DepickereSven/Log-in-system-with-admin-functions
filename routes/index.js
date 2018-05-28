@@ -87,7 +87,7 @@ router.post('/register', function (req, res, next) {
 });
 
 router.get('/user/:username/logout', function (req, res, next) {
-    userList.removeUser(req.session.username);
+    userList.removeUser(req.session.user);
     req.session.authenticated = false;
     index.normalIndex(res);
 });
