@@ -63,14 +63,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% data.forEach(function (el, index) { %>
-                <tr>
-                    <th scope="row"><%= index %></th>
-                    <td><%= data[index].user %></td>
-                    <td><%= data[index].activeSince %></td>
 
-                </tr>
-                <% }) %>
                 </tbody>
             </table>
         </div>
@@ -88,4 +81,6 @@
 <script src="/js/Template/jquery.nice-select.min.js"></script>
 <script src="/js/Template/jquery.magnific-popup.min.js"></script>
 <script src="/js/Template/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+<script src="/js/sockets.js"></script>
 </html>
