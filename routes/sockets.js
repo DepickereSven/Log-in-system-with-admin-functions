@@ -9,7 +9,8 @@ const server = require('http').createServer(app);
 const io = require('socket.io');
 
 server.listen(8080, function () {
-    console.log("listening on 8080");
+    console.log("socket is listening on 8080");
+    console.log("server is running on 3000")
 });
 
 const serverSocket = io(server);
