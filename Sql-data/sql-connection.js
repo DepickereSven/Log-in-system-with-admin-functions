@@ -13,12 +13,4 @@ module.exports = ({
     }
 });
 
-// const connection = mySql.createConnection({
-//     host: "localhost",
-//     port: 3306,
-//     database: "login",
-//     user: "root",
-//     password: ""
-// });
-// connection.connect();
 
