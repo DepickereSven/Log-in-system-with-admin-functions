@@ -37,7 +37,6 @@ router.post('/user/login', function (req, res, next) {
     let data = req.body;
     knex('logindetails')
         .where('Username', data.username)
-        .orWhere('EmailAdress', data.email)
         .select('Password')
         .then(function (Password) {
             if (Password[0] === undefined) {
