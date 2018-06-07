@@ -63,10 +63,9 @@ router.post('/register', function (req, res, next) {
     let data = req.body;
     if (data.password === data["confirm-password"]) {
         knex('logindetails')
-            .where({
-                Username: data.username,
-                EmailAdress: data.email
-            }).select('Username')
+            .where('Username', data.username)
+            .orWhere('EmailAdress', data.email)
+            .select('Username')
             .then(function (answer) {
                 if (answer[0] === undefined) {
                     insertValues(data, res);
