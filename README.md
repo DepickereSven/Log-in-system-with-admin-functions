@@ -1,6 +1,4 @@
-# Examen-Advanced-Server-Web
-Examen advanced server web oplossing
-
+#  Log in system with admin functions 
 
 ## Important node modules used:
   * express-session
@@ -42,7 +40,7 @@ Om te generen zie file: [Table_LoginDetails.sql](Table_LoginDetails.sql)
 
 * Op de pagina online vind je alle active gebruikers op dit moment. 
   * Is mogelijk gemaakte met een socketverbinding die op de poort 8080 draait
-* Alles wat in de opgave staat is geïmplementeerd. 
+
 
 ## Screenshots
 
