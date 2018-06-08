@@ -29,11 +29,11 @@ let registerAnUser = function (data,req,res) {
     }
 };
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     index.normalIndex(res);
 });
 
-router.post('/register', function (req, res, next) {
+router.post('/register', function (req, res) {
     let data = req.body;
     if (data.password === data["confirm-password"]) {
         knex('logindetails')
@@ -59,7 +59,7 @@ router.post('/register', function (req, res, next) {
     }
 });
 
-router.post('/user/login', function (req, res, next) {
+router.post('/user/login', function (req, res) {
     let data = req.body;
     knex('logindetails')
         .where('Username', data.username)
@@ -85,13 +85,13 @@ router.post('/user/login', function (req, res, next) {
         })
 });
 
-router.get('/user/:username/logout', function (req, res, next) {
+router.get('/user/:username/logout', function (req, res) {
     userList.removeUser(req.session.user);
     req.session.authenticated = false;
     index.normalIndex(res);
 });
 
-router.get('/user/admin/log', function (req, res, next) {
+router.get('/user/admin/log', function (req, res) {
     if (req.session.authenticated && req.session.user === 'admin'){
         user.renderAdmin(res, req.session.user);
     } else {
@@ -103,7 +103,7 @@ router.get('/user/admin/log', function (req, res, next) {
     }
 });
 
-router.get('/user/:username/someResource', function(req, res, next){
+router.get('/user/:username/someResource', function(req, res){
     if (req.session.authenticated){
         user.renderToLandingPage(res, req.session.user)
     } else {
@@ -111,7 +111,7 @@ router.get('/user/:username/someResource', function(req, res, next){
     }
 });
 
-router.get('/user/:username/Generic', function (req, res, next) {
+router.get('/user/:username/Generic', function (req, res) {
     if (req.session.authenticated){
         user.renderToGenericPage(res, req.session.user)
     } else {
@@ -119,7 +119,7 @@ router.get('/user/:username/Generic', function (req, res, next) {
     }
 });
 
-router.get('/user/:username/Elements', function (req, res, next) {
+router.get('/user/:username/Elements', function (req, res) {
     if (req.session.authenticated){
         user.renderToElementsPage(res, req.session.user)
     } else {
@@ -127,7 +127,7 @@ router.get('/user/:username/Elements', function (req, res, next) {
     }
 });
 
-router.get('/user/:username/all', function (req, res, next) {
+router.get('/user/:username/all', function (req, res) {
     if (req.session.authenticated){
         user.renderToAllPage(res, req.session.user)
     } else {
