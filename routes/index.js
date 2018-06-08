@@ -15,8 +15,8 @@ let insertValues = function (data, res) {
         );
 };
 
-let registerAnUser = function (data,req,res) {
-    if (userList.addUser(data.username)){
+let registerAnUser = function (data, req, res) {
+    if (userList.addUser(data.username)) {
         req.session.authenticated = true;
         req.session.user = data.username;
         index.login(data, res);
@@ -73,7 +73,7 @@ router.post('/user/login', function (req, res) {
                 }, res);
             } else {
                 if (Password[0].Password === data.password) {
-                    registerAnUser(data,req,res);
+                    registerAnUser(data, req, res);
                 } else {
                     index.renderLoginWithErrors({
                         username: data.username,
@@ -85,6 +85,14 @@ router.post('/user/login', function (req, res) {
         })
 });
 
+router.use('/user/:username', function (req, res, next) {
+    if (req.session.authenticated) {
+        next();
+    } else {
+        index.normalIndex(res);
+    }
+});
+
 router.get('/user/:username/logout', function (req, res) {
     userList.removeUser(req.session.user);
     req.session.authenticated = false;
@@ -92,7 +100,7 @@ router.get('/user/:username/logout', function (req, res) {
 });
 
 router.get('/user/admin/log', function (req, res) {
-    if (req.session.authenticated && req.session.user === 'admin'){
+    if (req.session.authenticated && req.session.user === 'admin') {
         user.renderAdmin(res, req.session.user);
     } else {
         error.toErrorPage(res, {
@@ -103,36 +111,20 @@ router.get('/user/admin/log', function (req, res) {
     }
 });
 
-router.get('/user/:username/someResource', function(req, res){
-    if (req.session.authenticated){
-        user.renderToLandingPage(res, req.session.user)
-    } else {
-        index.normalIndex(res);
-    }
+router.get('/user/:username/someResource', function (req, res) {
+    user.renderToLandingPage(res, req.session.user)
 });
 
 router.get('/user/:username/Generic', function (req, res) {
-    if (req.session.authenticated){
-        user.renderToGenericPage(res, req.session.user)
-    } else {
-        index.normalIndex(res);
-    }
+    user.renderToGenericPage(res, req.session.user)
 });
 
 router.get('/user/:username/Elements', function (req, res) {
-    if (req.session.authenticated){
-        user.renderToElementsPage(res, req.session.user)
-    } else {
-        index.normalIndex(res);
-    }
+    user.renderToElementsPage(res, req.session.user)
 });
 
 router.get('/user/:username/all', function (req, res) {
-    if (req.session.authenticated){
-        user.renderToAllPage(res, req.session.user)
-    } else {
-        index.normalIndex(res);
-    }
+    user.renderToAllPage(res, req.session.user)
 });
 
 module.exports = router;
