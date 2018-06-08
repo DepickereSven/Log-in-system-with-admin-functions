@@ -33,32 +33,6 @@ router.get('/', function (req, res, next) {
     index.normalIndex(res);
 });
 
-router.post('/user/login', function (req, res, next) {
-    let data = req.body;
-    knex('logindetails')
-        .where('Username', data.username)
-        .select('Password')
-        .then(function (Password) {
-            if (Password[0] === undefined) {
-                index.renderLoginWithErrors({
-                    username: data.username,
-                    messageForLogin: "Password or Username is wrong",
-                    flag: "user don't exist"
-                }, res);
-            } else {
-                if (Password[0].Password === data.password) {
-                    registerAnUser(data,req,res);
-                } else {
-                    index.renderLoginWithErrors({
-                        username: data.username,
-                        messageForLogin: "Password or Username is wrong",
-                        flag: "password isn't correct"
-                    }, res);
-                }
-            }
-        })
-});
-
 router.post('/register', function (req, res, next) {
     let data = req.body;
     if (data.password === data["confirm-password"]) {
@@ -83,6 +57,32 @@ router.post('/register', function (req, res, next) {
             username: data.username
         }, res)
     }
+});
+
+router.post('/user/login', function (req, res, next) {
+    let data = req.body;
+    knex('logindetails')
+        .where('Username', data.username)
+        .select('Password')
+        .then(function (Password) {
+            if (Password[0] === undefined) {
+                index.renderLoginWithErrors({
+                    username: data.username,
+                    messageForLogin: "Password or Username is wrong",
+                    flag: "user don't exist"
+                }, res);
+            } else {
+                if (Password[0].Password === data.password) {
+                    registerAnUser(data,req,res);
+                } else {
+                    index.renderLoginWithErrors({
+                        username: data.username,
+                        messageForLogin: "Password or Username is wrong",
+                        flag: "password isn't correct"
+                    }, res);
+                }
+            }
+        })
 });
 
 router.get('/user/:username/logout', function (req, res, next) {
